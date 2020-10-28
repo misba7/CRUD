@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdeploy
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: appdeploy
+        image: misba7/tactful.ai:v2
+        imagePullPolicy: Always    
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appdeploy
+  labels:
+    app: flask
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 31000
+    protocol: TCP
+  selector:
+    app: flask
+  type: NodePort        
