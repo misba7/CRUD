@@ -1,5 +1,5 @@
 #!/bin/bash
 
 
-docker build -t misba7/tactful.ai:v2 .
+docker build -t misba7/tactful.ai:v5 .
 docker push misba7/tactful.ai

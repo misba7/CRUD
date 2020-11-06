@@ -15,6 +15,8 @@ spec:
       containers:
       - name: appdeploy
         image: misba7/tactful.ai:v2
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
         imagePullPolicy: Always    
         ports:
         - containerPort: 80
